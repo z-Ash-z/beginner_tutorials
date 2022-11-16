@@ -3,14 +3,6 @@
 - This is a basic package to use and understand the nodes in ROS2.
 - This package uses one node to publish string messages and another node to subscribe to those string messages.
 
-## Installing dependencies
-
-- To install the necessary dependencies before proceeding.
-```
-cd <ros2 workspace folder>
-rosdep install -i --from-path src --rosdistro humble -y
-```
-
 ## Building the package
 
 - source the ROS Humble based on installation.
@@ -25,6 +17,12 @@ OR
 cd <ros2 workspace folder>/src
 git clone https://github.com/z-Ash-z/beginner_tutorials.git
 cd ..
+```
+
+- Install the necessary dependencies before proceeding.
+```
+cd <ros2 workspace folder>
+rosdep install -i --from-path src --rosdistro humble -y
 ```
 
 - Use colcon to build the package.

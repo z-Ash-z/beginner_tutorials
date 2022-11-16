@@ -3,6 +3,12 @@
 - This is a basic package to use and understand the nodes in ROS2.
 - This package uses one node to publish string messages and another node to subscribe to those string messages.
 
+## Dependencies
+
+- Ubuntu 20.04 LTS or 22.04 LTS running `ROS2 Humble`.
+- `colcon`
+- `rosdep`
+
 ## Building the package
 
 - source the ROS Humble based on installation.

@@ -28,13 +28,14 @@ class Talker : public rclcpp::Node {
    * transported.
    */
   Talker(const std::string &node_name = "pub",
-         std::string topic_name = "Messages", int interval = 1);
+         std::string topic_name = "Messages", std::string message = "Terps Strong", int interval = 1);
 
  private:
   rclcpp::TimerBase::SharedPtr
       timer_;  //!< The pointer that points to the callback.
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr
       publisher_;  //!< The pointer to the publisher topic.
+  std_msgs::msg::String message_; //!< The message that will be broadcasted in the channel.
 
   /**
    * @brief The callback funtion that prints and publishes a message in the

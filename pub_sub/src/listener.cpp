@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/pub_sub/listener.h"
+#include "listener.h"
 
 Listener::Listener(const std::string &node_name, std::string topic_name)
     : Node(node_name) {

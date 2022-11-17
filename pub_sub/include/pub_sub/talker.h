@@ -28,7 +28,7 @@ class Talker : public rclcpp::Node {
    * @param topic_name The name of the topic through which the messages have to
    * transported.
    */
-  Talker(const std::string &node_name = "pub", std::string topic_name = "Messages", std::string service_name = "change_publisher_string", std::string message = "Terps Strong", int interval = 1);
+  Talker(const std::string &node_name = "pub", std::string topic_name = "Messages", std::string service_name = "change_publisher_string", std::string message = "Terps Strong", int interval = 1000);
 
  private:
   rclcpp::TimerBase::SharedPtr timer_;  //!< The pointer that points to the callback.

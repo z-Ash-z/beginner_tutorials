@@ -19,7 +19,7 @@ Talker::Talker(const std::string &node_name, std::string topic_name, std::string
   // Adding information in log file.
   if (rcutils_logging_set_logger_level(this->get_name(), RCUTILS_LOG_SEVERITY::RCUTILS_LOG_SEVERITY_DEBUG) == RCUTILS_RET_OK) RCLCPP_DEBUG(this->get_logger(), "Started with DEBUG");
   else RCLCPP_INFO(this->get_logger(), "Started without DEBUG");
-  RCLCPP_DEBUG(this->get_logger(), "[%s] started publishing %s to %s at %i msec", node_name.c_str(), message.c_str(), topic_name.c_str(), interval);
+  RCLCPP_DEBUG(this->get_logger(), "[%s] started publishing '%s' to '/%s' at %imsec", node_name.c_str(), message.c_str(), topic_name.c_str(), interval);
 
   // Creating a publisher.
   publisher_ = this->create_publisher<std_msgs::msg::String>(topic_name, 10);
@@ -30,10 +30,15 @@ Talker::Talker(const std::string &node_name, std::string topic_name, std::string
   // Starting the publisher.
   timer_ = this->create_wall_timer(std::chrono::milliseconds(interval), std::bind(&Talker::timer_callback, this));
 
-  RCLCPP_WARN(this->get_logger(), "This prints at start?"); // Answer to this question is yess
+  // Using FATAL level logging, not necessary for this usecase but just for this assignment.
+  if (interval < 500)
+  {
+    RCLCPP_FATAL(this->get_logger(), "The speed of publish is extremely high! Quiting.");
+    exit(2);
+  }
 
   // Using ERROR level logging, not necessary for this usecase but just for this assignment.
-  if (interval < 500) RCLCPP_ERROR(this->get_logger(), "The speed of publish is too high!");
+  if (interval < 1000) RCLCPP_ERROR(this->get_logger(), "The speed of publish is too high!");
 }
 
 void Talker::timer_callback() {
@@ -48,5 +53,6 @@ void Talker::change_string(const std::shared_ptr<pub_sub::srv::StringChange::Req
 {
   message_.data = request->new_string;
   RCLCPP_WARN(this->get_logger(), "String changed to : %s", request->new_string.c_str());
+  RCLCPP_DEBUG(this->get_logger(), "Now publishing '%s'", message_.data.c_str());
   response->change_status = "OK";
 }

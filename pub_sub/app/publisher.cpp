@@ -10,7 +10,7 @@
  */
 #include <memory>
 
-#include "../include/pub_sub/talker.h"
+#include "talker.h"
 
 int main(int argc, char* argv[]) {
   // Initializing the rclcpp

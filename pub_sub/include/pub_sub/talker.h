@@ -36,7 +36,6 @@ class Talker : public rclcpp::Node {
   std_msgs::msg::String message_; //!< The message that will be broadcasted in the channel.
   rclcpp::Service<pub_sub::srv::StringChange>::SharedPtr service_; //!< The pointer to the service.
   
-
   /**
    * @brief The callback funtion that prints and publishes a message in the
    * topic.

@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/pub_sub/talker.h"
+#include "talker.h"
 
 Talker::Talker(const std::string &node_name, std::string topic_name,
                int interval)
@@ -25,7 +25,7 @@ void Talker::timer_callback() {
   message.data = "Terps Strong";
 
   // Loggin the message in the terminal
-  RCLCPP_INFO(this->get_logger(), "Terps Strong");
+  RCLCPP_INFO(this->get_logger(), message.data.c_str());
 
   // Publishing the message
   publisher_->publish(message);

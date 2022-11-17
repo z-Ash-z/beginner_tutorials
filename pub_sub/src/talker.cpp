@@ -30,6 +30,6 @@ void Talker::timer_callback() {
 void Talker::change_string(const std::shared_ptr<pub_sub::srv::StringChange::Request> request, std::shared_ptr<pub_sub::srv::StringChange::Response> response)
 {
   message_.data = request->new_string;
-  RCLCPP_INFO(this->get_logger(), "String changed to : %s", request->new_string.c_str());
+  RCLCPP_WARN(this->get_logger(), "String changed to : %s", request->new_string.c_str());
   response->change_status = "OK";
 }

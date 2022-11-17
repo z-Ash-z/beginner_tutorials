@@ -15,6 +15,14 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
+#--------Service creation : start-
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/StringChange.srv"
+  DEPENDENCIES std_msgs
+)
+#--------Service creation : end---
+
 #--------Talker class : start-----
 include_directories(include/pub_sub)
 add_executable(publisher app/publisher.cpp src/talker.cpp)

@@ -15,14 +15,6 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-#--------Service creation : start-
-find_package(rosidl_default_generators REQUIRED)
-rosidl_generate_interfaces(${PROJECT_NAME}
-  "srv/StringChange.srv"
-  DEPENDENCIES std_msgs
-)
-#--------Service creation : end---
-
 #--------Talker class : start-----
 include_directories(include/pub_sub)
 add_executable(publisher app/publisher.cpp src/talker.cpp)
@@ -42,5 +34,21 @@ install(TARGETS
 subscriber
 DESTINATION lib/${PROJECT_NAME})
 #--------Listener class : end ----------
+
+#--------Service creation : start-
+find_package(rosidl_default_generators REQUIRED)
+
+set(svg_files "srv/StringChange.srv")
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${svg_files}
+)
+ament_export_dependencies(rosidl_default_runtime)
+
+rosidl_get_typesupport_target(cpp_typesupport_target
+  ${PROJECT_NAME} "rosidl_typesupport_cpp")
+
+target_link_libraries(publisher "${cpp_typesupport_target}")
+#--------Service creation : end---
 
 ament_package()

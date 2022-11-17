@@ -16,6 +16,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
+#include <pub_sub/srv/string_change.hpp>
 
 class Talker : public rclcpp::Node {
  public:
@@ -27,15 +28,13 @@ class Talker : public rclcpp::Node {
    * @param topic_name The name of the topic through which the messages have to
    * transported.
    */
-  Talker(const std::string &node_name = "pub",
-         std::string topic_name = "Messages", std::string message = "Terps Strong", int interval = 1);
+  Talker(const std::string &node_name = "pub", std::string topic_name = "Messages", std::string service_name = "change_publisher_string", std::string message = "Terps Strong", int interval = 1);
 
  private:
-  rclcpp::TimerBase::SharedPtr
-      timer_;  //!< The pointer that points to the callback.
-  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr
-      publisher_;  //!< The pointer to the publisher topic.
+  rclcpp::TimerBase::SharedPtr timer_;  //!< The pointer that points to the callback.
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;  //!< The pointer to the publisher.
   std_msgs::msg::String message_; //!< The message that will be broadcasted in the channel.
+  rclcpp::Service<pub_sub::srv::StringChange>::SharedPtr service_; //!< The pointer to the service.
   
 
   /**
@@ -44,6 +43,14 @@ class Talker : public rclcpp::Node {
    *
    */
   void timer_callback();
+
+  /**
+   * @brief The service callback that changes the string that is published.
+   * 
+   * @param request The request message from client.
+   * @param response The response sent to client after processing the request.
+   */
+  void change_string(const std::shared_ptr<pub_sub::srv::StringChange::Request> request, std::shared_ptr<pub_sub::srv::StringChange::Response> response);
 };  // Talker
 
 #endif  // __TALKER_H__

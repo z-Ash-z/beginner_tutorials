@@ -1,4 +1,5 @@
 # Sample Publisher and Subscriber for ROS2
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 - This is a basic package to use and understand the nodes in ROS2.
 - This package uses one node to publish string messages and another node to subscribe to those string messages.

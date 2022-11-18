@@ -1,11 +1,6 @@
-include/pub_sub/listener.h:12:  #ifndef header guard has wrong style, please use: _HOME_ANEESHCH_ROS2_808X_WS_SRC_PUB_SUB_INCLUDE_PUB_SUB_LISTENER_H_  [build/header_guard] [5]
-include/pub_sub/listener.h:45:  #endif line should be "#endif  // _HOME_ANEESHCH_ROS2_808X_WS_SRC_PUB_SUB_INCLUDE_PUB_SUB_LISTENER_H_"  [build/header_guard] [5]
-include/pub_sub/talker.h:12:  #ifndef header guard has wrong style, please use: _HOME_ANEESHCH_ROS2_808X_WS_SRC_PUB_SUB_INCLUDE_PUB_SUB_TALKER_H_  [build/header_guard] [5]
-include/pub_sub/talker.h:47:  #endif line should be "#endif  // _HOME_ANEESHCH_ROS2_808X_WS_SRC_PUB_SUB_INCLUDE_PUB_SUB_TALKER_H_"  [build/header_guard] [5]
-Done processing app/publisher.cpp
-Done processing app/subscriber.cpp
-Done processing include/pub_sub/listener.h
-Done processing include/pub_sub/talker.h
-Done processing src/listener.cpp
-Done processing src/talker.cpp
-Total errors found: 4
+Done processing pub_sub/app/publisher.cpp
+Done processing pub_sub/app/subscriber.cpp
+Done processing pub_sub/include/pub_sub/listener.h
+Done processing pub_sub/include/pub_sub/talker.h
+Done processing pub_sub/src/listener.cpp
+Done processing pub_sub/src/talker.cpp

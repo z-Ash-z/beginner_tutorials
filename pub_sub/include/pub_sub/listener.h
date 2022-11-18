@@ -1,16 +1,17 @@
 /**
  * @file listener.h
  * @author Aneesh Chodisetty (aneesch@umd.edu)
- * @brief The listener node that listens to the string messages in the specified topic.
+ * @brief The listener node that listens to the string messages in the specified
+ * topic.
  * @version 0.1
  * @date 2022-11-16
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
-#ifndef __LISTENER_H__
-#define __LISTENER_H__
+#ifndef PUB_SUB_INCLUDE_PUB_SUB_LISTENER_H_
+#define PUB_SUB_INCLUDE_PUB_SUB_LISTENER_H_
 
 #include <string>
 
@@ -42,4 +43,4 @@ class Listener : public rclcpp::Node {
       subscription_;  //!< The pointer that subscribes to the topic.
 };                    // Listener
 
-#endif  // __LISTENER_H__
+#endif  // PUB_SUB_INCLUDE_PUB_SUB_LISTENER_H_

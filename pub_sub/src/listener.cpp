@@ -4,12 +4,12 @@
  * @brief The implementation of the listener class.
  * @version 0.1
  * @date 2022-11-16
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
-#include "listener.h"
+#include <listener.h>
 
 Listener::Listener(const std::string &node_name, std::string topic_name)
     : Node(node_name) {

@@ -15,24 +15,36 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-#--------Talker class : start-----
 include_directories(include/pub_sub)
+
+#--------Custom interfaces : start-----
+find_package(rosidl_default_generators REQUIRED)
+set(svg_files "srv/StringChange.srv")
+rosidl_generate_interfaces(${PROJECT_NAME} ${svg_files})
+#--------Custom interfaces : end-------
+
+#--------Talker class : start----------
 add_executable(publisher app/publisher.cpp src/talker.cpp)
 ament_target_dependencies(publisher rclcpp std_msgs)
 
-install(TARGETS
-publisher
-DESTINATION lib/${PROJECT_NAME})
-#--------Talker class : end-------
+install(TARGETS publisher DESTINATION lib/${PROJECT_NAME})
+#--------Talker class : end------------
 
-#--------Listener class : start --------
-# include_directories(include/pub_sub)
+#--------Listener class : start -------
 add_executable(subscriber app/subscriber.cpp src/listener.cpp)
 ament_target_dependencies(subscriber rclcpp std_msgs)
 
-install(TARGETS
-subscriber
-DESTINATION lib/${PROJECT_NAME})
-#--------Listener class : end ----------
+install(TARGETS subscriber DESTINATION lib/${PROJECT_NAME})
+#--------Listener class : end ---------
+
+#--------Linking interfaces : start----
+ament_export_dependencies(rosidl_default_runtime)
+rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(publisher "${cpp_typesupport_target}")
+#--------Linking interfaces : end------
+
+#--------For Launch file : start-------
+install(DIRECTORY launch DESTINATION share/${PROJECT_NAME}/)
+#--------For Launch file : end---------
 
 ament_package()

@@ -43,4 +43,8 @@ rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typ
 target_link_libraries(publisher "${cpp_typesupport_target}")
 #--------Linking interfaces : end------
 
+#--------For Launch file : start-------
+install(DIRECTORY launch DESTINATION share/${PROJECT_NAME}/)
+#--------For Launch file : end---------
+
 ament_package()

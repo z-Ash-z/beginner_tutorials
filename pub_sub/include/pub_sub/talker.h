@@ -14,9 +14,13 @@
 
 #include <string>
 #include <memory>
+
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
+#include <tf2/LinearMath/Quaternion.h>
 #include <pub_sub/srv/string_change.hpp>
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 
 class Talker : public rclcpp::Node {
  public:
@@ -31,9 +35,13 @@ class Talker : public rclcpp::Node {
 
  private:
   rclcpp::TimerBase::SharedPtr
-      timer_;  //!< The pointer that points to the callback.
+      timer_publisher_;  //!< The pointer to the publisher callback.
+  rclcpp::TimerBase::SharedPtr 
+      timer_frame_; //!< The pointer to the frame callback.
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr
       publisher_;  //!< The pointer to the publisher.
+  std::shared_ptr<tf2_ros::TransformBroadcaster>
+      tf_broadcaster_; //!< The pointer to the frame broadcaster.
   std_msgs::msg::String
       message_;  //!< The message that will be broadcasted in the channel.
   rclcpp::Service<pub_sub::srv::StringChange>::SharedPtr
@@ -45,6 +53,12 @@ class Talker : public rclcpp::Node {
    *
    */
   void timer_callback();
+
+  /**
+   * @brief The callback fuction that broadcasts the frame of this node.
+   * 
+   */
+  void broadcast_timer_callback();
 
   /**
    * @brief The service callback that changes the string that is published.

@@ -15,6 +15,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 include_directories(include/pub_sub)
 
@@ -26,7 +28,7 @@ rosidl_generate_interfaces(${PROJECT_NAME} ${svg_files})
 
 #--------Talker class : start----------
 add_executable(publisher app/publisher.cpp src/talker.cpp)
-ament_target_dependencies(publisher rclcpp std_msgs)
+ament_target_dependencies(publisher rclcpp std_msgs geometry_msgs rclcpp tf2_ros tf2)
 
 install(TARGETS publisher DESTINATION lib/${PROJECT_NAME})
 #--------Talker class : end------------

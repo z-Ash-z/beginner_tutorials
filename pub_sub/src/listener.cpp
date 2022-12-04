@@ -18,6 +18,6 @@ Listener::Listener(const std::string &node_name, std::string topic_name)
       std::bind(&Listener::topic_callback, this, std::placeholders::_1));
 }
 
-void Listener::topic_callback(const std_msgs::msg::String &msg) const {
+void Listener::topic_callback(const std_msgs::msg::String &msg) {
   RCLCPP_INFO(this->get_logger(), msg.data.c_str());
 }

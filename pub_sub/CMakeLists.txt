@@ -43,9 +43,9 @@ install(TARGETS subscriber DESTINATION lib/${PROJECT_NAME})
 #--------Listener class : end ---------
 
 #--------Tesing : start----------------
-# add_executable(tester test/intergation_tester.cpp test/tester.cpp app/publisher.cpp src/talker.cpp)
+# add_executable(tester test/tester.cpp src/listener.cpp src/talker.cpp)
 # ament_target_dependencies(tester rclcpp std_msgs geometry_msgs rclcpp tf2_ros tf2 ament_cmake_gtest) 
-set(TESTFILES test/tester.cpp)
+set(TESTFILES test/intergation_tester.cpp)
 ament_add_gtest(${PROJECT_NAME}_test ${TESTFILES})
 ament_target_dependencies(${PROJECT_NAME}_test rclcpp std_msgs geometry_msgs rclcpp tf2_ros tf2)
 #--------Tesing : end------------------

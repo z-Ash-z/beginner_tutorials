@@ -99,3 +99,16 @@ ros2 run rqt_console rqt_console
 ```
 - Sample screensnip of the `rqt_console`.
 ![rqt_console](/pub_sub/results/screenshots/rqt_console.png)
+
+## Checking the published frames
+- In a new terminal (`Ctrl+Shift+T`) source both humble and your package. Then type the following command while the publisher or any of the launch files are running.
+    1. For viewing the frames being broadcasted use:
+        ```
+        ros2 run tf2_tools view_frames
+        ```
+        - The result while running the publisher is here: [diagram](/pub_sub/results/frames_2022-12-01_01.21.06.pdf)
+
+    2. For seeing the report between two frames use:
+        ```
+        ros2 run tf2_ros tf2_echo talk world
+        ```

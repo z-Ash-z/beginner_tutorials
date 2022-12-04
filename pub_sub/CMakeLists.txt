@@ -17,6 +17,8 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(ament_cmake_gtest REQUIRED)
+# ament_lint_auto_find_test_dependencies()
 
 include_directories(include/pub_sub)
 
@@ -40,10 +42,19 @@ ament_target_dependencies(subscriber rclcpp std_msgs)
 install(TARGETS subscriber DESTINATION lib/${PROJECT_NAME})
 #--------Listener class : end ---------
 
+#--------Tesing : start----------------
+# add_executable(tester test/intergation_tester.cpp test/tester.cpp app/publisher.cpp src/talker.cpp)
+# ament_target_dependencies(tester rclcpp std_msgs geometry_msgs rclcpp tf2_ros tf2 ament_cmake_gtest) 
+set(TESTFILES test/tester.cpp)
+ament_add_gtest(${PROJECT_NAME}_test ${TESTFILES})
+ament_target_dependencies(${PROJECT_NAME}_test rclcpp std_msgs geometry_msgs rclcpp tf2_ros tf2)
+#--------Tesing : end------------------
+
 #--------Linking interfaces : start----
 ament_export_dependencies(rosidl_default_runtime)
 rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
 target_link_libraries(publisher "${cpp_typesupport_target}")
+target_link_libraries(${PROJECT_NAME}_test "${cpp_typesupport_target}")
 #--------Linking interfaces : end------
 
 #--------For Launch file : start-------

@@ -7,6 +7,7 @@
   <maintainer email="aneeshch@umd.edu">Aneesh Chodisetty</maintainer>
   <license>MIT license</license>
 
+  <buildtool_depend>ament_cmake_ros</buildtool_depend>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <build_depend>rosidl_default_generators</build_depend>
   <exec_depend>rosidl_default_runtime</exec_depend>
@@ -21,6 +22,7 @@
   
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

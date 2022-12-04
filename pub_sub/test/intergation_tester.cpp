@@ -67,19 +67,10 @@ namespace integration_test {
 
                 // Waiting for the service to be completed.
                 if (rclcpp::spin_until_future_complete(node_, result) == rclcpp::FutureReturnCode::SUCCESS) {
-                    
-                    RCLCPP_INFO(node_->get_logger(), "Response %s", result.get()->change_status.c_str());
-                    std::string temp;
-                    try
-                    {
-                        temp = result.get()->change_status.data();
-                    }
-                    catch(const std::exception& e)
-                    {
-                        std::cerr << e.what() << "That is not working" << std::endl;
-                        temp = "OK";
-                    }
-                    
+                    std::string temp{result.get()->change_status.c_str()};
+                    std::cout << "This happened" << std::endl;
+                    RCLCPP_INFO(node_->get_logger(), "Response %s", temp.c_str());
+
                     return temp;
                 }
 
@@ -117,8 +108,7 @@ namespace integration_test {
      */
     TEST_F(TestingFixture, ServiceCallCheck) {
         std::cout << "Service call check" << std::endl;
-        std::string test{send_service_call()};
-        EXPECT_EQ("OK", "OK");
+        EXPECT_EQ(send_service_call(), "OK");
     }
 } // namespace integration_test 
 

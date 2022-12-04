@@ -112,3 +112,11 @@ ros2 run rqt_console rqt_console
         ```
         ros2 run tf2_ros tf2_echo talk world
         ```
+
+## Testing using colcon
+- In a new terminal (`Ctrl+Shift+T`) source both humble and your package. Then type the following command while the publisher or any of the launch files are running.
+```
+colcon test --event-handlers console_direct+ --packages-select pub_sub
+```
+
+ - The client services are tested and you can see the results in the terminal, with details in which tests have passed.

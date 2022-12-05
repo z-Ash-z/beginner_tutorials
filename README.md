@@ -127,13 +127,15 @@ ros2 run rqt_console rqt_console
 - For style guide analysis, from the root directory of the project, run:
 ```
 cpplint --filter=-build/c++11,+build/c++17,-build/name,-build/include_order,-runtime/explicit --recursive pub_sub/. > pub_sub/results/cpplint.txt
-``` 
+```
+- The results are in [cpplint.txt](/pub_sub/results/cpplint.txt)
 
 ## Running CPP check
 - For static code analysis, from the root directory of the project run:
 ```
 cppcheck --enable=all --std=c++17 pub_sub/app/ pub_sub/include/pub_sub/ pub_sub/src --suppress=missingIncludeSystem --suppress=unmatchedSuppression --suppress=unusedFunction --suppress=missingInclude --suppress=useInitializationList > pub_sub/results/cppcheck.txt
 ```
+- The results are in [cppcheck.txt](/pub_sub/results/cppcheck.txt)
 
 ## Checking the published frames
 - In a new terminal (`Ctrl+Shift+T`) source both humble and your package. Then type the following command while the publisher or any of the launch files are running.

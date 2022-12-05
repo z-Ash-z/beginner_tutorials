@@ -83,8 +83,8 @@ void Talker::timer_callback() {
 void Talker::broadcast_timer_callback() {
   geometry_msgs::msg::TransformStamped frame;
   frame.header.stamp = this->get_clock()->now();
-  frame.header.frame_id = "talk";
-  frame.child_frame_id = "world";
+  frame.header.frame_id = "world";
+  frame.child_frame_id = "talk";
 
   frame.transform.translation.x = 0.7;
   frame.transform.translation.y = 0.8;

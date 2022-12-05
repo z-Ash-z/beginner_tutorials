@@ -11,13 +11,13 @@
 
 #include <listener.h>
 
-Listener::Listener(const std::string &node_name, std::string topic_name)
-    : Node(node_name) {
+Listener::Listener(const std::string &node_name) : Node(node_name) {
+  this->declare_parameter("topic_name", "Messages");
   subscription_ = this->create_subscription<std_msgs::msg::String>(
-      topic_name, 10,
+      this->get_parameter("topic_name").as_string(), 10,
       std::bind(&Listener::topic_callback, this, std::placeholders::_1));
 }
 
-void Listener::topic_callback(const std_msgs::msg::String &msg) const {
+void Listener::topic_callback(const std_msgs::msg::String &msg) {
   RCLCPP_INFO(this->get_logger(), msg.data.c_str());
 }

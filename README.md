@@ -87,7 +87,7 @@ ros2 launch pub_sub <launch_file>.py
             2. publish_message (type = String). Usage `publish_message:='Hello`. This changes the message that is published by this node.
             3. publish_interval (type = int). Usage `publish_interval:=10000`. This changes the rate (in ms) at which the message is published by this node.
             4. record_bag (type = bool). Usage `record_bag:=True`. This helps record the ros topics into a ros bag.
-            > To view all the available option run ```ros2 launch pub_sub _pub_sub_custom_launch.py -s``` 
+            > To view all the available options run: ```ros2 launch pub_sub _pub_sub_custom_launch.py -s``` 
     3. `_pub_sub_error_launch.py` - To launch the publisher and subscriber simultaneously with the publishing interval set to `500ms` therefore raising a `ERROR` level severity.
     4. `_pub_sub_fatal_launch.py` - To launch the publisher and subscriber simultaneously with the publishing interval set to `400ms` therefore raising a `FATAL` level severity. This also stops the publisher.
     > **_NOTE:_** The publisher exits when it reaches `FATAL` level issue but the subscriber continues to run.

@@ -13,7 +13,6 @@
 
 Talker::Talker(const std::string &node_name, std::string service_name)
     : Node(node_name) {
-
   // Declare parameters.
   this->declare_parameter("topic_name", "Messages");
   this->declare_parameter("publish_message", "Terps Strong");
@@ -28,13 +27,12 @@ Talker::Talker(const std::string &node_name, std::string service_name)
     RCLCPP_DEBUG(this->get_logger(), "Started with DEBUG");
   else
     RCLCPP_INFO(this->get_logger(), "Started without DEBUG");
-  RCLCPP_DEBUG(this->get_logger(),
-               "[%s] started publishing '%s' to '/%s' at %imsec",
-               node_name.c_str(),
-               this->get_parameter("publish_message").as_string().c_str(),
-               this->get_parameter("topic_name").as_string().c_str(),
-               static_cast<int>(this->get_parameter("publish_interval").
-               as_int()));
+  RCLCPP_DEBUG(
+      this->get_logger(), "[%s] started publishing '%s' to '/%s' at %imsec",
+      node_name.c_str(),
+      this->get_parameter("publish_message").as_string().c_str(),
+      this->get_parameter("topic_name").as_string().c_str(),
+      static_cast<int>(this->get_parameter("publish_interval").as_int()));
 
   // Creating a publisher.
   publisher_ = this->create_publisher<std_msgs::msg::String>(
@@ -55,7 +53,8 @@ Talker::Talker(const std::string &node_name, std::string service_name)
       std::bind(&Talker::timer_callback, this));
 
   // Starting the static broadcaster
-  timer_frame_ = this->create_wall_timer(std::chrono::milliseconds(
+  timer_frame_ = this->create_wall_timer(
+      std::chrono::milliseconds(
           this->get_parameter("publish_interval").as_int()),
       std::bind(&Talker::broadcast_timer_callback, this));
 
@@ -82,7 +81,6 @@ void Talker::timer_callback() {
 }
 
 void Talker::broadcast_timer_callback() {
-
   geometry_msgs::msg::TransformStamped frame;
   frame.header.stamp = this->get_clock()->now();
   frame.header.frame_id = "talk";

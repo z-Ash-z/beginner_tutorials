@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2022
  *
  */
-#include <memory>
-
 #include <talker.h>
+
+#include <memory>
 
 int main(int argc, char* argv[]) {
   // Initializing the rclcpp
